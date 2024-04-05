@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: STG_SOURCE
+    database: DBT_ADVENTURES_DEV
+    schema: STAGING
+    tables:
+      - name: ADDRESS
+      - name: COUNTRYREGION
+      - name: CREDITCARD
+      - name: CUSTOMER
+      - name: DATE
+      - name: PERSON
+      - name: PRODUCT
+      - name: PRODUCTCATEGORY
+      - name: PRODUCTSUBCATEGORY
+      - name: SALESORDERDETAIL
+      - name: SALESORDERHEADER
+      - name: SALESORDERHEADERSALESREASON
+      - name: SALESREASON
+      - name: STORE
+      - name: STATEPROVINCE

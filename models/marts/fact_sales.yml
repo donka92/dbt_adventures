@@ -1,0 +1,55 @@
+version: 2
+
+models:
+  - name: fact_sales
+    columns:
+      - name: sales_key
+        description: Primary key of fact table fct_sales
+        tests:
+          - not_null
+          - unique
+      - name: product_key
+        description: Foreign Key to dimension dim_product        
+      - name: customer_key
+        description: Foreign Key to dimension dim_customer        
+        tests:
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_key
+              severity: warn
+      - name: credit_card_key
+        description: Foreign Key to dimension dim_credit_card
+       
+      - name: order_status_key
+        description: Foreign Key to dimension dim_order_status
+        tests:
+          - relationships:
+              to: ref('dim_order_status')
+              field: order_status_key
+              severity: warn
+      - name: oderdate_key
+        description: Foreign Key to dimension dim_date
+            
+      - name: ship_address_key
+        description: Foreign Key to dimension dim_address
+        constraints: 
+          - type: foreign_key
+        tests:
+          - relationships:
+              to: ref('dim_address')
+              field: address_key
+              severity: warn
+      - name: SALESORDERID
+        description: part of Natural Key to the source table SALESORDERDETAIL
+      - name: SALESORDERDETAILID
+        description: part of Natural Key to the source table SALESORDERDETAIL
+      - name: ORDERQTY
+        description: Ordered quantity from source table SALESORDERDETAIL
+      - name: UNITPRICE
+        description: unitprice from source table SALESORDERDETAIL
+      - name: revenue
+        description: ORDERQTY multiplied by revenue 
+      - name: orderdate
+        description: Orderdate from source SALESORDERHEADER
+      - name: batch_id
+        description: used invlocation_id to create batched of execution
